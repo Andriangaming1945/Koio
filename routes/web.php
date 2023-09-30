@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,19 @@ Route::patch('/keterangan/update/{id}', 'App\Http\Controllers\KeteranganControll
 Route::delete('/keterangan/destroy/{id}', 'App\Http\Controllers\KeteranganController@destroy')->name('keterangan.destroy');
 
 Route::get('/keteranganlist', 'App\Http\Controllers\KeteranganController@show')->name('keterangan_list');
+
+
+
+
+
+
+Route::middleware(['auth'])->group(function () {
+    
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+});
+
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\perizinan;
 use App\Models\keterangan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PerizinanController extends Controller
 {
@@ -38,7 +39,7 @@ class PerizinanController extends Controller
             'surat_keterangan' => 'required',
         ]);
         $perizinan = perizinan::create([
-            'user_id' => $validated['user_id'],
+            'user_id' => Auth::user()->id,
             'tanggal' => $validated['tanggal'],
             'keterangan_id' => $validated['keterangan_id'],
             'surat_keterangan' => $validated['surat_keterangan'],
@@ -66,7 +67,7 @@ class PerizinanController extends Controller
         $perizinan = perizinan::find($id);
         if($perizinan){
             $perizinan->update([
-                'user_id' => $validated['user_id'],
+                'user_id' => Auth::user()->id,
                 'tanggal' => $validated['tanggal'],
                 'keterangan_id' => $validated['keterangan_id'],
                 'surat_keterangan' => $validated['surat_keterangan'],

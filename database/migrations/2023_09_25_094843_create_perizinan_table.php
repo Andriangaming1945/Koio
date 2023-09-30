@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId("keterangan_id");
             $table->string("surat_keterangan");
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -16,4 +16,8 @@ class perizinan extends Model
     public function keterangan(): HasOne{
         return $this->hasOne(keterangan::class, 'id', 'keterangan_id');
     }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

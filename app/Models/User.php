@@ -20,6 +20,10 @@ class User extends Authenticatable
      */
     protected $guarded = [];
 
+    function perizinan(){
+        return $this->hasMany(perizinan::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
