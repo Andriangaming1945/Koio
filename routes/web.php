@@ -30,18 +30,8 @@ Route::delete('/keterangan/destroy/{id}', 'App\Http\Controllers\KeteranganContro
 
 Route::get('/keteranganlist', 'App\Http\Controllers\KeteranganController@show')->name('keterangan_list');
 
-
-
-
-
-
-Route::middleware(['auth'])->group(function () {
-    
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-    
-});
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
 
 
