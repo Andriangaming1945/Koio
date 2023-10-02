@@ -7,13 +7,11 @@
     <title>Perizinan</title>
 </head>
 <body>
+    @if($nama != null)
     <fieldset>
         <legend>Perizinan</legend>
-        <form action="{{ route('perizinan.store') }}" method="post">
+        <form action="{{ route('perizinan.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <label for="user_id">User ID</label>
-            <input type="number" name="user_id" required>
-            <br>
             <label for="tanggal">Tanggal</label>
             <input type="date" name="tanggal" required>
             <br>
@@ -26,9 +24,12 @@
             </select>
             <br>
             <label for="surat_keterangan">Surat Keterangan</label>
-            <textarea name="surat_keterangan" required></textarea>
+            <input type="file" name="surat_keterangan">
             <br>
             <button type="submit">Simpan</button>
         </form>
+    @else
+    <h1>Anda belum ada surat keterangan</h1>
+    @endif
 </body>
 </html>

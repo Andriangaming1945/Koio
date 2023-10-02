@@ -7,11 +7,11 @@
     <title>Page login</title>
 </head>
 <body>
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('tes') }}">
         @csrf
 
-        <label for="nama">Nama:</label>
-        <input type="text" id="nip" name="nip" required>
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
 
         <label for="nip">NIP:</label>
         <input type="text" id="nip" name="nip" required>

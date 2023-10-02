@@ -6,6 +6,7 @@ use App\Models\perizinan;
 use App\Models\keterangan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PerizinanController extends Controller
 {
@@ -33,16 +34,18 @@ class PerizinanController extends Controller
     }
     public function store(Request $request){
         $validated = $this->validate($request, [
-            'user_id' => 'required',
             'tanggal' => 'required',
             'keterangan_id' => 'required',
             'surat_keterangan' => 'required',
         ]);
+        $file = $request->file('surat_keterangan');
+        $newfilename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        Storage::disk('public')->put($newfilename, file_get_contents($file));
         $perizinan = perizinan::create([
             'user_id' => Auth::user()->id,
             'tanggal' => $validated['tanggal'],
             'keterangan_id' => $validated['keterangan_id'],
-            'surat_keterangan' => $validated['surat_keterangan'],
+            'surat_keterangan' => $newfilename
         ]);
         if($perizinan){
             return redirect()->route('perizinan.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -59,7 +62,6 @@ class PerizinanController extends Controller
 
     public function update(Request $request, $id){
         $validated = $this->validate($request, [
-            'user_id' => 'required',
             'tanggal' => 'required',
             'keterangan_id' => 'required',
             'surat_keterangan' => 'required',

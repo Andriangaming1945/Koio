@@ -30,8 +30,10 @@ Route::delete('/keterangan/destroy/{id}', 'App\Http\Controllers\KeteranganContro
 
 Route::get('/keteranganlist', 'App\Http\Controllers\KeteranganController@show')->name('keterangan_list');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('login');
+Route::post('/login/cek', 'App\Http\Controllers\AuthController@tes')->name('tes');
+
+Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout');
 
 
 
